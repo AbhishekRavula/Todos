@@ -1,0 +1,24 @@
+.todo-input {
+  min-height: 2.5rem;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: none;
+  padding: 0.5rem;
+}
+
+.todo-input:focus {
+  outline: none;
+}
+
+.todo-add-button {
+  color: white;
+  width: 2.5rem;
+  border-radius: 0.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-input-form {
+  display: flex;
+  gap: 0.5rem;
+}

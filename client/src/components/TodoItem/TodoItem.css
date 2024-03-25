@@ -1,0 +1,36 @@
+.todo-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.87);
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  overflow: auto;
+}
+
+.delete-todo-item {
+  color: red;
+  background-color: transparent;
+}
+
+.mark-complete-todo-item {
+  color: green;
+  background-color: transparent;
+}
+
+.edit-todo-item {
+  color: black;
+  background-color: transparent;
+}
+
+.todo-item-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.todo-item-name-and-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
