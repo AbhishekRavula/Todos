@@ -4,6 +4,13 @@
   border-radius: 0.2rem;
   border: none;
   padding: 0.5rem;
+  background-color: #505050;
+  caret-color: white;
+  color: white;
+}
+
+.todo-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .todo-input:focus {

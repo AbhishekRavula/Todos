@@ -26,7 +26,7 @@ function App() {
         {cookies.token && (
           <>
             <div style={{ color: "#fff" }}>{`Welcome ${cookies.name}`}</div>
-            <Button style={{ minWidth: 0 }} onClick={logout}>
+            <Button style={{ minWidth: 0 }} onClick={logout} title="logout">
               <LogoutIcon />
             </Button>
           </>

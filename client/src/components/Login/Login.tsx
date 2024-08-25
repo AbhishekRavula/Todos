@@ -1,18 +1,24 @@
-import { Button } from "@mui/material";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useTheme } from "@mui/material/styles";
 
 export const Login = () => {
+  const theme = useTheme();
+
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const [cookies, setCookie] = useCookies(["token", "name"]);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoginLoading, setIsLoginLoadin] = useState(false);
+  const [isSignUpLoading, setIsSignUpLoading] = useState(false);
 
   const login = async () => {
     try {
+      setIsLoginLoadin(true);
       const res = await fetch(`${apiUrl}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -28,11 +34,14 @@ export const Login = () => {
       if (jsonRes.message) toast.error(jsonRes.message);
     } catch (error) {
       console.log("error:", error);
+    } finally {
+      setIsLoginLoadin(false);
     }
   };
 
   const signUp = async () => {
     try {
+      setIsSignUpLoading(true);
       const res = await fetch(`${apiUrl}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,6 +57,8 @@ export const Login = () => {
       if (jsonRes.message) toast.error(jsonRes.message);
     } catch (error) {
       console.log("error:", error);
+    } finally {
+      setIsSignUpLoading(false);
     }
   };
   return (
@@ -70,22 +81,34 @@ export const Login = () => {
         placeholder="password"
       />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Button
+        <LoadingButton
+          loading={isLoginLoading}
           style={{ whiteSpace: "nowrap" }}
           className="todo-add-button"
           data-testid="add-new-item-button"
           onClick={login}
+          sx={{
+            "& .MuiCircularProgress-root": {
+              color: theme.palette.primary.main,
+            },
+          }}
         >
           Log in
-        </Button>
-        <Button
+        </LoadingButton>
+        <LoadingButton
+          loading={isSignUpLoading}
           style={{ whiteSpace: "nowrap" }}
           className="todo-add-button"
           data-testid="add-new-item-button"
           onClick={signUp}
+          sx={{
+            "& .MuiCircularProgress-root": {
+              color: theme.palette.primary.main,
+            },
+          }}
         >
           Sign up
-        </Button>
+        </LoadingButton>
       </div>
       <ToastContainer
         position="bottom-center"
